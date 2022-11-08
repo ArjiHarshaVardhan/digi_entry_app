@@ -8,6 +8,7 @@ String name = '';
 String roll = '';
 bool status = false;
 String wanted = '';
+String dummy = '';
 
 final CollectionReference _project =
     FirebaseFirestore.instance.collection('project');
@@ -578,7 +579,7 @@ class _DisplayState extends State<Display> {
               },
             ),
           ),
-          (isError == true)
+          (wanted.length != 8)
               ? Text('Enrollment number does not exists')
               : Text(''),
           Expanded(

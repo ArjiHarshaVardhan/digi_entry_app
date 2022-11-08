@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nfc_manager/nfc_manager.dart';
 
 String name = '';
 String roll = '';
@@ -100,7 +101,7 @@ class _NfcDisplayState extends State<NfcDisplay> {
               },
             ),
           ),
-          (isError == true) ? Text('Could not read NFC Tag') : Text(''),
+          (wanted.length != 8) ? Text('Could not read NFC Tag') : Text(''),
           Expanded(
             flex: 35,
             child: SizedBox(
