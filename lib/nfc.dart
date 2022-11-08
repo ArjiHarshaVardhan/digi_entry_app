@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nfc_manager/nfc_manager.dart';
+import 'package:Digital_Entry/nfc_working.dart';
 
 String name = '';
 String roll = '';
