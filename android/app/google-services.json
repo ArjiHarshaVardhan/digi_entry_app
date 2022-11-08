@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "918095567907",
+    "project_id": "in-out-trail-app",
+    "storage_bucket": "in-out-trail-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918095567907:android:af3f855699d5045518a596",
+        "android_client_info": {
+          "package_name": "com.example.in_out_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918095567907-4id1b3t4sipn2q6iae63oj31s1anm1tb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_Et9TJURc7jD0IiFcf76eqOnDBslrWEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918095567907-4id1b3t4sipn2q6iae63oj31s1anm1tb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
