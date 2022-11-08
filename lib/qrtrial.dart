@@ -83,7 +83,7 @@ class _ScanningPageState extends State<ScanningPage> {
                   Navigator.pushNamed(context, '/qrdisplay');
                 },
                 child: Text(
-                  'DONE',
+                  'PROCEED',
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Scada',
