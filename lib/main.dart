@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_app/nfc.dart';
-import 'package:flutter_app/qrtrial.dart';
+import 'package:Digital_Entry/nfc.dart';
+import 'package:Digital_Entry/qrtrial.dart';
 
 String name = '';
 String roll = '';
