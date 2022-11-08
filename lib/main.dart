@@ -114,7 +114,7 @@ class _OptionsState extends State<Options> {
                       Navigator.pushNamed(context, '/out');
                     },
                     child: Text(
-                      'OUT STUDENTS INFO',
+                      'OUT STUDENTS',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16.0,
