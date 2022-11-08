@@ -17,6 +17,7 @@ class NfcDisplay extends StatefulWidget {
 }
 
 class _NfcDisplayState extends State<NfcDisplay> {
+  bool isError = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +27,10 @@ class _NfcDisplayState extends State<NfcDisplay> {
           title: Center(
             child: Center(
               child: Text(
-                'READ NFC',
+                'TOGGLE',
                 style: TextStyle(
                   fontFamily: 'Scada',
+                  fontWeight: FontWeight.bold,
                   fontSize: 22,
                 ),
               ),
@@ -69,6 +71,7 @@ class _NfcDisplayState extends State<NfcDisplay> {
                       final DocumentSnapshot documentSnapshot =
                           streamSnapshot.data!.docs[index];
                       if (documentSnapshot['roll'] == wanted) {
+                        isError = false;
                         name = documentSnapshot['name'];
                         status = documentSnapshot['status'];
                         roll = documentSnapshot['roll'];
@@ -97,6 +100,7 @@ class _NfcDisplayState extends State<NfcDisplay> {
               },
             ),
           ),
+          (isError == true) ? Text('Could not read NFC Tag') : Text(''),
           Expanded(
             flex: 35,
             child: SizedBox(

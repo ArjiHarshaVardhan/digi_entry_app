@@ -8,7 +8,6 @@ String name = '';
 String roll = '';
 bool status = false;
 String wanted = '';
-bool isError = true;
 
 final CollectionReference _project =
     FirebaseFirestore.instance.collection('project');
@@ -30,6 +29,7 @@ class _FirestoreAppState extends State<FirestoreApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/options',
       routes: {
         '/pseudo': (context) => PseudoHome(),
@@ -495,6 +495,7 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
+  bool isError = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -577,7 +578,9 @@ class _DisplayState extends State<Display> {
               },
             ),
           ),
-          (isError == true) ? Text('Enrollment does not exists') : Text(''),
+          (isError == true)
+              ? Text('Enrollment number does not exists')
+              : Text(''),
           Expanded(
             flex: 35,
             child: SizedBox(
