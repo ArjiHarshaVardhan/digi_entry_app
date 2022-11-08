@@ -8,6 +8,7 @@ String name = '';
 String roll = '';
 bool status = false;
 String wanted = '';
+bool isError = true;
 
 final CollectionReference _project =
     FirebaseFirestore.instance.collection('project');
@@ -547,6 +548,7 @@ class _DisplayState extends State<Display> {
                       final DocumentSnapshot documentSnapshot =
                           streamSnapshot.data!.docs[index];
                       if (documentSnapshot['roll'] == wanted) {
+                        isError = false;
                         name = documentSnapshot['name'];
                         status = documentSnapshot['status'];
                         roll = documentSnapshot['roll'];
@@ -575,6 +577,7 @@ class _DisplayState extends State<Display> {
               },
             ),
           ),
+          (isError == true) ? Text('Enrollment does not exists') : Text(''),
           Expanded(
             flex: 35,
             child: SizedBox(
