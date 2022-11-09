@@ -6,7 +6,7 @@ import 'package:Digital_Entry/nfc_working.dart';
 String name = '';
 String roll = '';
 bool status = false;
-String wanted = '';
+String wanted = '21114016';
 
 final CollectionReference _project =
     FirebaseFirestore.instance.collection('project');
