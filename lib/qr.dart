@@ -122,6 +122,7 @@ class QRDisplay extends StatefulWidget {
 }
 
 class _QRDisplayState extends State<QRDisplay> {
+  bool isError = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,44 +166,43 @@ class _QRDisplayState extends State<QRDisplay> {
           ),
           Container(
             height: 100,
-            child: StreamBuilder(
-              stream: _project.snapshots(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                if (streamSnapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: streamSnapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      final DocumentSnapshot documentSnapshot =
-                          streamSnapshot.data!.docs[index];
-                      if (documentSnapshot['roll'] == wanted) {
-                        name = documentSnapshot['name'];
-                        status = documentSnapshot['status'];
-                        roll = documentSnapshot['roll'];
-                        return Card(
-                          margin: const EdgeInsets.all(10),
-                          child: ListTile(
-                            title: Text(documentSnapshot['name']),
-                            subtitle: Text(documentSnapshot['roll']),
-                            trailing: Text(documentSnapshot['status'] == true
-                                ? 'going OUT?'
-                                : 'going IN?'),
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              backgroundImage: AssetImage('assets/$roll.png'),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Card();
-                      }
-                    },
-                  );
+            child: FutureBuilder(
+              future: _project.doc(wanted).get(),
+              builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasData && snapshot.data!.exists) {
+                    final DocumentSnapshot documentSnapshot = snapshot.data!;
+                    name = documentSnapshot['name'];
+                    status = documentSnapshot['status'];
+                    roll = documentSnapshot['roll'];
+
+                    return Card(
+                      margin: const EdgeInsets.all(10),
+                      child: ListTile(
+                        title: Text(documentSnapshot['name']),
+                        subtitle: Text(documentSnapshot['roll']),
+                        trailing: Text(documentSnapshot['status'] == true
+                            ? 'going OUT?'
+                            : 'going IN?'),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          backgroundImage: AssetImage('assets/$roll.png'),
+                        ),
+                      ),
+                    );
+                  } else {
+                    isError = true;
+                    return Card();
+                  }
                 } else {
                   return Card();
                 }
               },
             ),
           ),
+          (wanted.length != 8)
+              ? Text('Enrollment number does not exists')
+              : Text(''),
           Expanded(
             flex: 35,
             child: SizedBox(
